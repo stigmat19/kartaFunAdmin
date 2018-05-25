@@ -37,7 +37,7 @@ if($_FILES['partner_imgUrl']['error'] == 0){
 
     mysqli_close($con);
   }
-  echo "<script>alert('Фото добавлено')</script>";
+  echo "<script>alert('Партнер добавлен')</script>";
   echo '<center><a href="../index.php">назад</a></center>';
 }
 else{
