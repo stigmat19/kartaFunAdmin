@@ -15,7 +15,8 @@ $dataResult = array();
 $data = mysqli_query($con, "SELECT * FROM Partners");
 
 while ($row = mysqli_fetch_assoc($data)){
-  //$row['id'] - идентификатор текущего партнера
+  //print_r($row['id']); //- идентификатор текущего партнера
+  $information = null;
   $info_data = mysqli_query($con, "SELECT * FROM Information WHERE partner_id = ".$row['id']);
   while ($info_row = mysqli_fetch_assoc($info_data)){
     $information[] = $info_row;
