@@ -14,15 +14,22 @@
 <div class="wrap">
   <div>
     <h2>Загрузить в базу</h2>
+    <form action="php/image_upload.php"
+          method="post"
+          enctype="multipart/form-data"
+          id="form_image">
+      <label>
+        Здесь будет загрузка картинки
+        <input type="file" name="partner_imgUrl" id="partner_imgUrl" class="form-control">
+<!--        <input type="submit" value="send" class="btn btn-primary">-->
+        <input type="hidden" name="img_name_hidden" id="img_name_hidden">
+      </label>
+    </form>
     <form id="setData">
       <div class="form-left">
         <label>
           Введите название партнера
           <input type="text" name="partner_name" placeholder="Название партнера" class="form-control">
-        </label>
-        <label>
-          Здесь будет загрузка картинки
-          <input type="file" name="partner_imgUrl" id="partner_imgUrl" class="form-control">
         </label>
         <label>
           Введите телефоны
