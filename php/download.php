@@ -2489,11 +2489,34 @@ foreach ($result_data as $result_datum) {
     array_push($link_array, $item['name']);
   }
 
-  print_r($link_array);
-
   $result_link = implode('\n',$link_array);
-
   $result_tel = implode('\n',$result_datum['tel']);
   $result_email = implode('\n',$result_datum['email']);
   mysqli_query($con, "INSERT INTO Partners (partner_name, imgUrl, tel, email, link, mount, descr) VALUES ('".$result_datum['name']."','".$result_datum['imgUrl']."','".$result_tel."','".$result_email."','".$result_link."','".$result_datum['mount']."','".$result_datum['descr']."')");
+
+  //Получаем идентификатор родителя
+  $parent_id = mysqli_query($con, "SELECT MAX(id) FROM Partners");
+  $data_result_array = array();
+  $current_id = null;//будет лежать ид родителя
+  while ($row = mysqli_fetch_assoc($parent_id)){
+    $data_result_array[] = $row;
+  }
+  foreach ($data_result_array as $item) {
+    foreach ($item as $_item){
+      $current_id = (int)$_item;
+    }
+  }
+
+  foreach ($result_datum['information'] as $info_item){
+    //достаем телефоны
+    $pre_tel_data = array();
+    $i = 0;
+    while ($i < count($info_item)){
+      array_push($pre_tel_data, $info_item['tel'][$i]);
+      $i++;
+    }
+    $result_tel = implode('\n',$pre_tel_data);
+
+    mysqli_query($con, "INSERT INTO Information (tel, adress, shedule, partner_id) VALUES ('".$result_tel."', '".$info_item['adress']."','".$info_item['schedule']."','".$current_id."')");
+  }
 }
