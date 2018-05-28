@@ -68,14 +68,25 @@ $(document).ready(function() { // вся мaгия пoслe зaгрузки ст
               var resultData = [];
               var parntersArray = JSON.parse(data);
               for(var i=0; i<parntersArray .length; i++){
-                console.log('partner', parntersArray[i]);
                 for(var k=0; k<parntersArray[i].information.length; k++){
-                  console.log('info', parntersArray[i].information[k]);
+                  //console.log('info', parntersArray[i].information[k]);
                   var preTel = parntersArray[i].information[k].tel.split('\n');
+                  var telResult = [];
+                  preTel.forEach(function (value) {
+                    //console.log('value', value);
+                    if(value!==''){
+                      telResult.push(value);
+                    }
+                  });
+                  //console.log('telResult',telResult);
+                  parntersArray[i].information[k].tel = telResult;
                 }
-                console.log('preTel',preTel);
-                console.log('=======================');
+
+                // console.log(JSON.stringify(parntersArray);
+                // //console.log('preTel',preTel);
+                // console.log('=======================');
               }
+              console.log(JSON.stringify(parntersArray));
             }
           }
         },

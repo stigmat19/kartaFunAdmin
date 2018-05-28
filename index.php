@@ -94,7 +94,7 @@
   </div>
 </div>
 <div>
-  <input type=button onclick='testLoadData()' value='загрузить JSON'>
+<!--  <input type=button onclick='testLoadData()' value='загрузить JSON'>-->
 </div>
 
 
@@ -106,56 +106,56 @@
 <script src="js/send.js"></script>
 <script src="data/data.json"></script>
 
-<script>
-
-  "use strict";
-
-  function testLoadData() {
-    $.ajax("data/data.json",
-      { type:'GET', dataType:'json', success:dataLoaded, error:errorHandler }
-    );
-  }
-
-  function dataLoaded(mydata) {
-    console.log('загруженные через AJAX данные:');
-    //console.log(JSON.stringify(mydata));
-
-    var newData = JSON.stringify(mydata);
-
-    //console.log(newData);
-
-    $.ajax({
-      type: 'POST',
-      url: 'php/download.php',
-      dataType: 'json',
-      data: newData,
-      beforeSend: function(data) {
-
-      },
-      success: function(data){
-        //console.log('new data', data);
-        if (data['error']) {
-          alert(data['error']);
-        } else {
-          alert('success');
-        }
-      },
-      error: function (xhr, ajaxOptions, thrownError) { // в случae нeудaчнoгo зaвeршeния зaпрoсa к сeрвeру
-        console.log(xhr.status); // пoкaжeм oтвeт сeрвeрa
-        console.log(thrownError); // и тeкст oшибки
-      },
-      complete: function(data) {
-        //console.log('Сработал complete');
-      }
-    });
-
-  }
-
-  function errorHandler(jqXHR,statusStr,errorStr) {
-    alert(statusStr+' '+errorStr);
-  }
-
-</script>
+<!--<script>-->
+<!---->
+<!--  "use strict";-->
+<!---->
+<!--  function testLoadData() {-->
+<!--    $.ajax("data/data.json",-->
+<!--      { type:'GET', dataType:'json', success:dataLoaded, error:errorHandler }-->
+<!--    );-->
+<!--  }-->
+<!---->
+<!--  function dataLoaded(mydata) {-->
+<!--    console.log('загруженные через AJAX данные:');-->
+<!--    //console.log(JSON.stringify(mydata));-->
+<!---->
+<!--    var newData = JSON.stringify(mydata);-->
+<!---->
+<!--    //console.log(newData);-->
+<!---->
+<!--    $.ajax({-->
+<!--      type: 'POST',-->
+<!--      url: 'php/download.php',-->
+<!--      dataType: 'json',-->
+<!--      data: newData,-->
+<!--      beforeSend: function(data) {-->
+<!---->
+<!--      },-->
+<!--      success: function(data){-->
+<!--        //console.log('new data', data);-->
+<!--        if (data['error']) {-->
+<!--          alert(data['error']);-->
+<!--        } else {-->
+<!--          alert('success');-->
+<!--        }-->
+<!--      },-->
+<!--      error: function (xhr, ajaxOptions, thrownError) { // в случae нeудaчнoгo зaвeршeния зaпрoсa к сeрвeру-->
+<!--        console.log(xhr.status); // пoкaжeм oтвeт сeрвeрa-->
+<!--        console.log(thrownError); // и тeкст oшибки-->
+<!--      },-->
+<!--      complete: function(data) {-->
+<!--        //console.log('Сработал complete');-->
+<!--      }-->
+<!--    });-->
+<!---->
+<!--  }-->
+<!---->
+<!--  function errorHandler(jqXHR,statusStr,errorStr) {-->
+<!--    alert(statusStr+' '+errorStr);-->
+<!--  }-->
+<!---->
+<!--</script>-->
 
 
 </body>

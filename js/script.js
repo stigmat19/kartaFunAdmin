@@ -39,7 +39,7 @@ $(document).ready(function() {
     // Создадим данные формы и добавим в них данные файлов из files
 
     var data = new FormData();
-    console.log('data1112', data);
+    console.log('data', data);
     $.each( files, function( key, value ){
       data.append( key, value );
     });
