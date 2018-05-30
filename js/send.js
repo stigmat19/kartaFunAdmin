@@ -67,7 +67,16 @@ $(document).ready(function() { // вся мaгия пoслe зaгрузки ст
               //console.log('данные получены', JSON.parse(data));
               var resultData = [];
               var parntersArray = JSON.parse(data);
-              for(var i=0; i<parntersArray .length; i++){
+              for(var i=0; i<parntersArray.length; i++){
+                //преобразуем телефоны в массив
+                var parentTel = parntersArray[i].tel.split('\n').filter(function (value) { return value !== '' });
+                parntersArray[i].tel = parentTel;
+
+                //преобразуем емайл в массив
+                var parentEmail = parntersArray[i].email.split('\n').filter(function (value) { return value !== '' });
+                parntersArray[i].email = parentEmail;
+
+
                 for(var k=0; k<parntersArray[i].information.length; k++){
                   //console.log('info', parntersArray[i].information[k]);
                   var preTel = parntersArray[i].information[k].tel.split('\n');
@@ -81,12 +90,9 @@ $(document).ready(function() { // вся мaгия пoслe зaгрузки ст
                   //console.log('telResult',telResult);
                   parntersArray[i].information[k].tel = telResult;
                 }
-
-                // console.log(JSON.stringify(parntersArray);
-                // //console.log('preTel',preTel);
-                // console.log('=======================');
+                //console.log('parnter',parntersArray[i]);
               }
-              console.log(JSON.stringify(parntersArray));
+              console.log(JSON.stringify(parntersArray));//отсюда копируем json
             }
           }
         },

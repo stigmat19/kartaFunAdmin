@@ -14400,7 +14400,14 @@ foreach ($result_data as $result_datum) {
   $result_link = implode('\n',$link_array);
   $result_tel = implode('\n',$result_datum['tel']);
   $result_email = implode('\n',$result_datum['email']);
-  mysqli_query($con, "INSERT INTO Partners (partner_name, imgUrl, tel, email, link, mount, descr) VALUES ('".$result_datum['name']."','".$result_datum['imgUrl']."','".$result_tel."','".$result_email."','".$result_link."','".$result_datum['mount']."','".$result_datum['descr']."')");
+
+  $result_img_text = null;
+
+  if(isset($result_datum['imgText'])){
+    $result_img_text = $result_datum['imgText'];
+  }
+
+  mysqli_query($con, "INSERT INTO Partners (partner_name, imgUrl, imgText, tel, email, link, mount, descr) VALUES ('".$result_datum['name']."','".$result_datum['imgUrl']."','".$result_img_text."','".$result_tel."','".$result_email."','".$result_link."','".$result_datum['mount']."','".$result_datum['descr']."')");
 
   //Получаем идентификатор родителя
   $parent_id = mysqli_query($con, "SELECT MAX(id) FROM Partners");

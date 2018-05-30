@@ -33,7 +33,7 @@ if($_FILES['partner_imgUrl']['error'] == 0){
       }
     }
     //обновляем строку базы данных
-    mysqli_query($con, "UPDATE Partners SET imgUrl = '".$img_name."' WHERE id = '".$current_id."'");
+    mysqli_query($con, "UPDATE Partners SET imgUrl = '".$new_name."' WHERE id = '".$current_id."'");
 
     mysqli_close($con);
   }
